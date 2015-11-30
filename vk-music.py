@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 import os,requests,json
-import tkinter as tk
 from tkinter import filedialog
 from time import sleep
 from selenium import webdriver
