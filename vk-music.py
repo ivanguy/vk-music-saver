@@ -134,8 +134,10 @@ if __name__=="__main__":
 
     dwnldd = 0
     skpd = 0
-    lock=Lock()
+    kbdsig=False
     for i in range(0,number):
+        if kbdsig:
+            break
         song_name=artists_list[i]+'-'+titles_list[i]+'.mp3'
         song_name=song_name.replace('/','')
         filename=args.path + os.path.sep + song_name
@@ -143,17 +145,14 @@ if __name__=="__main__":
         if not os.path.exists(filename):
             print("Downloading: ",filename[len(args.path):])
             try:
-                lock.acquire()
                 with open(filename, "wb") as out:
                     response = requests.get(links_list[i].split("?")[0])
                     out.write(response.content)
                     print("...done")
                     dwnldd+=1
-                lock.release()
             except KeyboardInterrupt as e:
                 print("Waiting for download...")
-                lock.acquire()
-                raise e
+                kbdsig=True
                 
         else:
             print("Skippin: ", filename[len(args.path):])
