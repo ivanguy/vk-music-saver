@@ -151,6 +151,7 @@ if __name__=="__main__":
                     dwnldd+=1
                 lock.release()
             except KeyboardInterrupt as e:
+                print("Waiting for download...")
                 lock.acquire()
                 raise e
                 
