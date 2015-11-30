@@ -143,7 +143,7 @@ if __name__=="__main__":
         filename=args.path + os.path.sep + song_name
         filename.strip("/")
         if not os.path.exists(filename):
-            print("Downloading: ",filename[len(args.path):])
+            print("[{}/{}]Downloading:\t{}".format(i+1,number,filename[len(args.path):]))
             try:
                 with open(filename, "wb") as out:
                     response = requests.get(links_list[i].split("?")[0])
